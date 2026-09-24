@@ -59,7 +59,7 @@ export function FoundationHome() {
       <header className={styles.header}>
         {isPagesPreview ? <a className={styles.brand} href="/moduvita-platform/" aria-label="ModuVita, início"><span className={styles.brandMark}>✳</span> ModuVita<span className={styles.brandDot}>.</span></a> : <Link className={styles.brand} href="/" aria-label="ModuVita, início"><span className={styles.brandMark}>✳</span> ModuVita<span className={styles.brandDot}>.</span></Link>}
         <div className={styles.headerRight}>
-          <span className={styles.version}>{isPagesPreview ? "PRÉVIA PÚBLICA" : "VERSÃO 0.2.1"}</span>
+          <span className={styles.version}>{isPagesPreview ? "PRÉVIA PÚBLICA" : "VERSÃO 0.3.0"}</span>
           <ThemePicker />
         </div>
       </header>
@@ -80,7 +80,7 @@ export function FoundationHome() {
         <div className={styles.workspacePicker} role="group" aria-label="Prévia de workspace"><span className={styles.pickerLabel}>VISUALIZAR WORKSPACE</span><div className={styles.pickerButtons}><button type="button" aria-pressed={workspace === "personal"} className={workspace === "personal" ? styles.active : ""} onClick={() => setWorkspace("personal")}>◉ &nbsp; Pessoal</button><button type="button" aria-pressed={workspace === "professional"} className={workspace === "professional" ? styles.active : ""} onClick={() => setWorkspace("professional")}>▣ &nbsp; Profissional</button></div><span className={styles.previewLabel}>Prévia visual · sem dados salvos</span></div>
         <div className={styles.panel}><div className={styles.panelTop}><div><span className={styles.panelOverline}>WORKSPACE / {workspace === "personal" ? "PESSOAL" : "PROFISSIONAL"}</span><h3>{workspace === "personal" ? "Seu dia começa aqui." : "Seu trabalho, organizado."}</h3><p>{workspace === "personal" ? "Um lugar para suas ideias, rotinas e próximos passos." : "Um lugar para organizar clientes, serviços e projetos."}</p></div><span className={styles.panelGlyph} aria-hidden="true">{workspace === "personal" ? "◌" : "▤"}</span></div><div className={styles.cards}>{(workspace === "personal" ? modules : [{ icon: "♧", title: "Clientes", description: "Relações e histórico no contexto certo.", phase: "Etapa 4" }, { icon: "▤", title: "Ordens de serviço", description: "Do atendimento à entrega.", phase: "Etapa 4" }, { icon: "◷", title: "Agenda", description: "Seus compromissos em um só lugar.", phase: "Etapa 3" }, { icon: "◈", title: "Financeiro", description: "Entradas e saídas com clareza.", phase: "Etapa 5" }]).map((module) => <article className={styles.card} key={module.title}><span className={styles.cardIcon} aria-hidden="true">{module.icon}</span><span className={styles.phase}>{module.phase}</span><h4>{module.title}</h4><p>{module.description}</p><span className={styles.coming}>Em planejamento ↗</span></article>)}</div></div>
       </section>
-      <footer className={styles.footer}><span>✳ ModuVita · Construído por etapas.</span><span>Versão 0.2.1 · 2026</span></footer>
+      <footer className={styles.footer}><span>✳ ModuVita · Construído por etapas.</span><span>Versão 0.3.0 · 2026</span></footer>
     </main>
   );
 }
