@@ -1,0 +1,26 @@
+name: Funcionalidade
+description: Planejar uma entrega antes de implementá-la
+title: "feat: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema e objetivo
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Escopo e módulo responsável
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de aceite verificáveis
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impacto em dados, permissões e compatibilidade
