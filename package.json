@@ -1,0 +1,13 @@
+{
+  "name": "moduvita-platform",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "npm run dev --workspace @moduvita/web",
+    "build": "npm run build --workspace @moduvita/web",
+    "start": "npm run start --workspace @moduvita/web",
+    "check": "npm run check --workspace @moduvita/web"
+  },
+  "engines": { "node": ">=20.9.0" }
+}
