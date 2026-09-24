@@ -2,6 +2,14 @@
 
 Todas as alterações relevantes deste projeto são registradas aqui. Durante a fase `0.x`, uma mudança incompatível também pode ocorrer numa versão MINOR, desde que seja explicada e migrável.
 
+## [0.2.1] - 2026-09-24
+
+### Adicionado
+
+- Prévia estática da página pública gerada a partir do mesmo componente da aplicação.
+- Workflow para validar em PR e publicar a prévia no GitHub Pages após integração à `main`.
+- Aviso explícito na prévia: login e dados persistidos exigem o servidor Next.js.
+
 ## [0.2.0] - 2026-09-24
 
 ### Adicionado

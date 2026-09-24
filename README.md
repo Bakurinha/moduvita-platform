@@ -2,7 +2,7 @@
 
 Plataforma modular para gestão pessoal, profissional, estudos, escrita e organização diária.
 
-**Versão 0.2.0 — identidade e workspaces.** A página pública tem uma prévia visual. Em `/app`, após configurar o Supabase, é possível entrar por link de e-mail, criar workspaces persistidos e acessar somente os seus. Os módulos de produtividade ainda não existem.
+**Versão 0.2.1 — identidade, workspaces e prévia pública.** A [prévia no GitHub Pages](https://bakurinha.github.io/moduvita-platform/) mostra a interface pública, sem login. Em `/app`, depois de configurar o Supabase num servidor Next.js, é possível entrar por link de e-mail, criar workspaces persistidos e acessar somente os seus. Os módulos de produtividade ainda não existem.
 
 ## Executar
 
@@ -19,6 +19,8 @@ Abra `http://localhost:3000`. Para validar uma entrega:
 npm run check
 npm run build
 ```
+
+Para gerar a mesma prévia estática publicada no Pages, rode `npm run build:pages`. O resultado fica em `dist/pages/`. Veja [docs/PAGES.md](docs/PAGES.md) para os limites e a publicação.
 
 Sem configuração, a página pública abre normalmente e `/login` mostra o que falta. Nunca envie credenciais nem `.env.local` ao repositório.
 
@@ -50,7 +52,7 @@ modules/              Documentação e, futuramente, implementação isolada dos
 supabase/migrations/  Estrutura e políticas de banco versionadas
 tests/               Teste de isolamento no banco
 docs/                 Regras, arquitetura, decisões e roadmap
-.github/workflows/     Verificação de cada push e pull request
+.github/workflows/     Verificação e publicação da prévia no Pages
 ```
 
 ## Regras de trabalho

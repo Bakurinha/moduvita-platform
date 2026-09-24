@@ -52,13 +52,14 @@ const modules = [
 
 export function FoundationHome() {
   const [workspace, setWorkspace] = useState<WorkspaceKind>("personal");
+  const isPagesPreview = process.env.NEXT_PUBLIC_PAGES_PREVIEW === "1";
 
   return (
     <main className={styles.shell}>
       <header className={styles.header}>
-        <Link className={styles.brand} href="/" aria-label="ModuVita, início"><span className={styles.brandMark}>✳</span> ModuVita<span className={styles.brandDot}>.</span></Link>
+        {isPagesPreview ? <a className={styles.brand} href="/moduvita-platform/" aria-label="ModuVita, início"><span className={styles.brandMark}>✳</span> ModuVita<span className={styles.brandDot}>.</span></a> : <Link className={styles.brand} href="/" aria-label="ModuVita, início"><span className={styles.brandMark}>✳</span> ModuVita<span className={styles.brandDot}>.</span></Link>}
         <div className={styles.headerRight}>
-          <span className={styles.version}>FUNDAÇÃO · V0.1.0</span>
+          <span className={styles.version}>{isPagesPreview ? "PRÉVIA PÚBLICA" : "VERSÃO 0.2.1"}</span>
           <ThemePicker />
         </div>
       </header>
@@ -68,7 +69,8 @@ export function FoundationHome() {
           <span className={styles.eyebrow}><span className={styles.pulse} /> UM ESPAÇO PARA CADA PARTE DA SUA VIDA</span>
           <h1 id="hero-title">Organize o hoje.<br /><em>Abra espaço</em> para o amanhã.</h1>
           <p>Notas, planos, estudos e trabalho poderão viver juntos — cada um no seu lugar. Estamos construindo essa base, um módulo de cada vez.</p>
-          <div className={styles.heroActions}><Link className={styles.primaryAction} href="/login">Acessar meu espaço <span aria-hidden="true">↗</span></Link><a className={styles.secondaryAction} href="#visao">Conheça a estrutura ↓</a><a className={styles.secondaryAction} href="https://github.com/Bakurinha/moduvita-platform" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
+          {isPagesPreview && <p className={styles.previewNotice}>Prévia pública da interface. O login e os dados salvos exigem a aplicação com servidor.</p>}
+          <div className={styles.heroActions}>{isPagesPreview ? <a className={styles.primaryAction} href="#visao">Explorar a prévia <span aria-hidden="true">↓</span></a> : <Link className={styles.primaryAction} href="/login">Acessar meu espaço <span aria-hidden="true">↗</span></Link>}{!isPagesPreview && <a className={styles.secondaryAction} href="#visao">Conheça a estrutura ↓</a>}<a className={styles.secondaryAction} href="https://github.com/Bakurinha/moduvita-platform" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
         </div>
         <div className={styles.orbit} aria-hidden="true"><div className={styles.orbitOuter}><div className={styles.orbitInner}><div className={styles.orbitCore}>✳</div></div></div><span className={`${styles.orbitTag} ${styles.tagA}`}>pessoal</span><span className={`${styles.orbitTag} ${styles.tagB}`}>trabalho</span><span className={`${styles.orbitTag} ${styles.tagC}`}>estudos</span></div>
       </section>
@@ -78,7 +80,7 @@ export function FoundationHome() {
         <div className={styles.workspacePicker} role="group" aria-label="Prévia de workspace"><span className={styles.pickerLabel}>VISUALIZAR WORKSPACE</span><div className={styles.pickerButtons}><button type="button" aria-pressed={workspace === "personal"} className={workspace === "personal" ? styles.active : ""} onClick={() => setWorkspace("personal")}>◉ &nbsp; Pessoal</button><button type="button" aria-pressed={workspace === "professional"} className={workspace === "professional" ? styles.active : ""} onClick={() => setWorkspace("professional")}>▣ &nbsp; Profissional</button></div><span className={styles.previewLabel}>Prévia visual · sem dados salvos</span></div>
         <div className={styles.panel}><div className={styles.panelTop}><div><span className={styles.panelOverline}>WORKSPACE / {workspace === "personal" ? "PESSOAL" : "PROFISSIONAL"}</span><h3>{workspace === "personal" ? "Seu dia começa aqui." : "Seu trabalho, organizado."}</h3><p>{workspace === "personal" ? "Um lugar para suas ideias, rotinas e próximos passos." : "Um lugar para organizar clientes, serviços e projetos."}</p></div><span className={styles.panelGlyph} aria-hidden="true">{workspace === "personal" ? "◌" : "▤"}</span></div><div className={styles.cards}>{(workspace === "personal" ? modules : [{ icon: "♧", title: "Clientes", description: "Relações e histórico no contexto certo.", phase: "Etapa 4" }, { icon: "▤", title: "Ordens de serviço", description: "Do atendimento à entrega.", phase: "Etapa 4" }, { icon: "◷", title: "Agenda", description: "Seus compromissos em um só lugar.", phase: "Etapa 3" }, { icon: "◈", title: "Financeiro", description: "Entradas e saídas com clareza.", phase: "Etapa 5" }]).map((module) => <article className={styles.card} key={module.title}><span className={styles.cardIcon} aria-hidden="true">{module.icon}</span><span className={styles.phase}>{module.phase}</span><h4>{module.title}</h4><p>{module.description}</p><span className={styles.coming}>Em planejamento ↗</span></article>)}</div></div>
       </section>
-      <footer className={styles.footer}><span>✳ ModuVita · Construído por etapas.</span><span>Fundação 0.1.0 · 2026</span></footer>
+      <footer className={styles.footer}><span>✳ ModuVita · Construído por etapas.</span><span>Versão 0.2.1 · 2026</span></footer>
     </main>
   );
 }
