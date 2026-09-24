@@ -2,6 +2,19 @@
 
 Todas as alterações relevantes deste projeto são registradas aqui. Durante a fase `0.x`, uma mudança incompatível também pode ocorrer numa versão MINOR, desde que seja explicada e migrável.
 
+## [0.3.0] - 2026-09-24
+
+### Adicionado
+
+- Core inicial por workspace: arquivos privados, tags, busca por nome/tag, exportação JSON de metadados e notificações internas.
+- Migração de bucket privado, tabelas e políticas RLS, mais teste com duas identidades e tentativas de acesso indevido.
+- Procedimento de backup/restauração de teste do banco e dos arquivos do Storage.
+
+### Limitações
+
+- Aplicação e migração ainda exigem projeto Supabase hospedado e verificação de ponta a ponta. O Pages mostra somente a página pública.
+- Exportação JSON não contém bytes dos arquivos; baixe cada arquivo pela rota autenticada. Não há importação ou exclusão neste incremento.
+
 ## [0.2.1] - 2026-09-24
 
 ### Adicionado
