@@ -54,6 +54,12 @@ export default async function WorkspacePage({ params, searchParams }: {
       <p>Arquivos privados, tags e busca pertencem a este workspace. A prévia pública do Pages não exibe estes dados.</p>
       {status && Object.hasOwn(messages, status) && <p className={styles.notice} role="status">{messages[status]}</p>}
       {loadError && <p className={styles.notice} role="alert">Não foi possível carregar o Core. Aplique a migração do Core no projeto Supabase.</p>}
+      <section className={styles.coreSection}><h2>Produtividade</h2><p className={styles.muted}>Seus registros ficam neste workspace e são privados para você.</p>
+        <div className={styles.grid}>
+          <Link className={styles.workspaceCard} href={"/app/" + workspaceId + "/notes"}><span className={styles.cardIcon}>✎</span><strong>Notas</strong><span>Criar, buscar, editar e recuperar →</span></Link>
+          <Link className={styles.workspaceCard} href={"/app/" + workspaceId + "/journal"}><span className={styles.cardIcon}>◷</span><strong>Diário</strong><span>Entradas datadas e lixeira →</span></Link>
+        </div>
+      </section>
       <div className={styles.coreGrid}>
         <section className={styles.createCard}><h2>Adicionar arquivo</h2><p>PDF, TXT, PNG ou JPG, até 5 MB. Somente membros do workspace podem acessar.</p>
           <form className={styles.form} action={uploadCoreFile}>

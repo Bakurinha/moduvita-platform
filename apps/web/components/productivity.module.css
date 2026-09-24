@@ -1,0 +1,34 @@
+.shell { max-width: 960px; min-height: 100vh; margin: 0 auto; padding: 0 6% 100px; }
+.nav { display: flex; justify-content: space-between; align-items: center; min-height: 80px; border-bottom: 1px solid var(--line); font-weight: 700; }
+.nav a, .listHeader a, .pages a { color: var(--accent-dark); text-underline-offset: 4px; }
+.heading { padding: 55px 0 20px; }
+.heading h1 { font-size: clamp(34px, 5vw, 52px); letter-spacing: -.05em; margin: 10px 0; }
+.heading p { color: var(--muted); line-height: 1.65; }
+.eyebrow { font-size: 11px; font-weight: 800; letter-spacing: .14em; color: var(--accent); }
+.panel, .record { background: var(--surface); border: 1px solid var(--line); border-radius: 15px; padding: 25px; box-shadow: var(--card-shadow); }
+.panel { margin: 30px 0 45px; }
+.panel h2, .records h2 { font-size: 23px; letter-spacing: -.03em; margin: 0 0 18px; }
+.form { display: grid; gap: 8px; }
+.form label { font-size: 13px; font-weight: 700; margin-top: 8px; }
+.form input, .form textarea, .search input { width: 100%; padding: 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: var(--page); font: inherit; }
+.form textarea { resize: vertical; min-height: 135px; white-space: pre-wrap; }
+.form button, .search button, .controls button, .record > form button { justify-self: start; padding: 11px 17px; border: 0; border-radius: 8px; background: var(--accent-dark); color: var(--page); font-weight: 700; cursor: pointer; }
+.listHeader { display: flex; justify-content: space-between; gap: 15px; align-items: center; }
+.search { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; margin-bottom: 25px; }
+.search label { font-size: 13px; font-weight: 700; }
+.search input { flex: 1 1 240px; width: auto; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.record h3 { font-size: 21px; overflow-wrap: anywhere; margin: 0 0 5px; }
+.record small { color: var(--muted); }
+.body { line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 180px; overflow: auto; }
+.controls { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 14px; }
+.controls details { flex: 1 1 280px; }
+.controls summary { color: var(--accent-dark); font-weight: 700; cursor: pointer; }
+.controls details .form { margin-top: 18px; }
+.controls form { display: grid; gap: 9px; }
+.controls label { font-size: 13px; }
+.notice { background: var(--accent-soft); padding: 14px; border-radius: 8px; }
+.empty { color: var(--muted); padding: 20px 0; }
+.pages { display: flex; justify-content: space-between; margin-top: 22px; font-weight: 700; }
+.shell :is(a,button,input,textarea,summary):focus-visible { outline: 3px solid #d9a565; outline-offset: 3px; }
+@media (max-width: 600px) { .shell { padding: 0 6% 70px; }.heading { padding-top: 40px; }.panel,.record { padding: 20px; } }

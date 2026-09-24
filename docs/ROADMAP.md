@@ -7,7 +7,7 @@ Cada etapa gera uma entrega com critérios de aceite próprios. A numeração de
 | 0.1.0 · fundação inicial | Regras, limites, documentação, UI inicial, tema e CI | Concluído |
 | 0.2.0 · identidade e dados | Login por link, workspaces persistidos, membership, migração, RLS e teste de isolamento | Implementado; ativação em projeto Supabase pendente |
 | 1 · Core utilizável | Arquivos privados, tags, busca autorizada, exportação, base de notificações | Implementado em 0.3.0; validação Supabase hospedado pendente |
-| 2 · Produtividade | Notas e Diário utilizáveis em workspace | Pendente |
+| 2 · Produtividade | Notas e Diário utilizáveis em workspace | Implementado em 0.4.0; validação Supabase hospedado pendente |
 | 3 · Tempo | Agenda, rotinas e lembretes | Pendente |
 | 4 · Profissional básico | Clientes, ordens de serviço, objetivos | Pendente |
 | 5 · Financeiro | Receitas, despesas, contas e resumo | Pendente |
@@ -26,7 +26,7 @@ Cada etapa gera uma entrega com critérios de aceite próprios. A numeração de
 - [x] Interface inicial responsiva com prévia pessoal/profissional claramente identificada como demonstração.
 - [x] Temas claro, escuro e sistema, sem estilo específico de módulo vazando para outros.
 - [x] Scripts e workflow para verificar tipos, lint e build.
-- [ ] Checagens executadas no GitHub após a abertura do PR; acompanhar no próprio PR.
+- [x] Checagens executadas no GitHub após a abertura do PR.
 
 ## Critérios da 0.2.0
 
@@ -44,6 +44,14 @@ Cada etapa gera uma entrega com critérios de aceite próprios. A numeração de
 - [x] Procedimento de backup/restauração documentado.
 - [ ] Aplicar migrações, testar upload/download e restaurar banco e bytes no Supabase hospedado.
 
+## Critérios da etapa 2
+
+- [x] Pacotes e contratos próprios para Notas e Diário.
+- [x] Criação, edição, busca paginada, lixeira e restauração.
+- [x] RLS por workspace e autor, teste com dois membros do mesmo workspace e auditoria do descarte.
+- [x] Exportação inclui registros ativos e descartados.
+- [ ] Aplicar as três migrações e verificar os fluxos em Supabase hospedado, após as pendências das etapas anteriores.
+
 ## Próxima issue sugerida
 
-**2 — Produtividade.** Notas e Diário em um workspace; antes, cumprir os últimos critérios da 0.2.0 e da etapa 1 em ambiente Supabase de teste.
+**3 — Tempo.** Agenda, rotinas e lembretes; antes, cumprir a validação hospedada das etapas 0.2.0, 1 e 2.
