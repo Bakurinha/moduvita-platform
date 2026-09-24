@@ -2,7 +2,7 @@
 
 Plataforma modular para gestão pessoal, profissional, estudos, escrita e organização diária.
 
-**Versão 0.2.1 — identidade, workspaces e prévia pública.** A [prévia no GitHub Pages](https://bakurinha.github.io/moduvita-platform/) mostra a interface pública, sem login. Em `/app`, depois de configurar o Supabase num servidor Next.js, é possível entrar por link de e-mail, criar workspaces persistidos e acessar somente os seus. Os módulos de produtividade ainda não existem.
+**Versão 0.2.1 — identidade, workspaces e prévia pública.** A [prévia no GitHub Pages](https://bakurinha.github.io/moduvita-platform/) mostrará a interface pública, sem login, após ativar **Settings → Pages → Source = GitHub Actions** no repositório. Em `/app`, depois de configurar o Supabase num servidor Next.js, é possível entrar por link de e-mail, criar workspaces persistidos e acessar somente os seus. Os módulos de produtividade ainda não existem.
 
 ## Executar
 
