@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "npm run dev --workspace @moduvita/web",
     "build": "npm run build --workspace @moduvita/web",
+    "start": "npm run start --workspace @moduvita/web",
     "check": "npm run check --workspace @moduvita/web"
   },
   "engines": { "node": ">=20.9.0" }
