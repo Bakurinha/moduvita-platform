@@ -15,6 +15,7 @@
 .hero h1 { margin: 27px 0 22px; font-size: clamp(44px, 5vw, 72px); line-height: 1.09; letter-spacing: -.067em; font-weight: 800; max-width: 760px; }
 .hero h1 em { color: var(--accent); font-family: Georgia, 'Times New Roman', serif; font-weight: 400; letter-spacing: -.056em; }
 .hero p { color: var(--muted); line-height: 1.75; max-width: 565px; font-size: 17px; margin: 0; }
+.hero .previewNotice { color: var(--accent-dark); font-size: 13px; font-weight: 700; margin-top: 18px; }
 .heroActions { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; margin-top: 36px; }
 .primaryAction { display: inline-flex; align-items: center; gap: 24px; background: var(--accent-dark); color: var(--page); padding: 16px 21px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; }
 .primaryAction:hover { transform: translateY(-2px); }

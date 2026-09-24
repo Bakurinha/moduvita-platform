@@ -1,6 +1,6 @@
 {
   "name": "moduvita-platform",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "npm run dev --workspace @moduvita/web",
     "build": "npm run build --workspace @moduvita/web",
+    "build:pages": "node scripts/build-pages-preview.mjs",
     "start": "npm run start --workspace @moduvita/web",
     "check": "npm run check --workspace @moduvita/web && npm run test:db",
     "test:db": "node --test tests/*.test.mjs"
