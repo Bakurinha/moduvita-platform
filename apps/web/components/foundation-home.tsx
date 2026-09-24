@@ -68,7 +68,7 @@ export function FoundationHome() {
           <span className={styles.eyebrow}><span className={styles.pulse} /> UM ESPAÇO PARA CADA PARTE DA SUA VIDA</span>
           <h1 id="hero-title">Organize o hoje.<br /><em>Abra espaço</em> para o amanhã.</h1>
           <p>Notas, planos, estudos e trabalho poderão viver juntos — cada um no seu lugar. Estamos construindo essa base, um módulo de cada vez.</p>
-          <div className={styles.heroActions}><a className={styles.primaryAction} href="#visao">Conheça a estrutura <span aria-hidden="true">↗</span></a><a className={styles.secondaryAction} href="https://github.com/Bakurinha/moduvita-platform" target="_blank" rel="noopener noreferrer">Acompanhar no GitHub ↗</a></div>
+          <div className={styles.heroActions}><Link className={styles.primaryAction} href="/login">Acessar meu espaço <span aria-hidden="true">↗</span></Link><a className={styles.secondaryAction} href="#visao">Conheça a estrutura ↓</a><a className={styles.secondaryAction} href="https://github.com/Bakurinha/moduvita-platform" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>
         </div>
         <div className={styles.orbit} aria-hidden="true"><div className={styles.orbitOuter}><div className={styles.orbitInner}><div className={styles.orbitCore}>✳</div></div></div><span className={`${styles.orbitTag} ${styles.tagA}`}>pessoal</span><span className={`${styles.orbitTag} ${styles.tagB}`}>trabalho</span><span className={`${styles.orbitTag} ${styles.tagC}`}>estudos</span></div>
       </section>

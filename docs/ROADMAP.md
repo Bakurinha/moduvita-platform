@@ -5,7 +5,7 @@ Cada etapa gera uma entrega com critérios de aceite próprios. A numeração de
 | Etapa | Escopo | Estado |
 | --- | --- | --- |
 | 0.1.0 · fundação inicial | Regras, limites, documentação, UI inicial, tema e CI | Feito neste PR |
-| 0.2.0 · identidade e dados | Autenticação real, workspaces persistidos, membership, migrations, autorização e testes de isolamento | Pendente |
+| 0.2.0 · identidade e dados | Login por link, workspaces persistidos, membership, migração, RLS e teste de isolamento | Implementado; ativação em projeto Supabase pendente |
 | 1 · Core utilizável | Arquivos privados, tags, busca autorizada, exportação, base de notificações | Pendente |
 | 2 · Produtividade | Notas e Diário utilizáveis em workspace | Pendente |
 | 3 · Tempo | Agenda, rotinas e lembretes | Pendente |
@@ -28,6 +28,14 @@ Cada etapa gera uma entrega com critérios de aceite próprios. A numeração de
 - [x] Scripts e workflow para verificar tipos, lint e build.
 - [ ] Checagens executadas no GitHub após a abertura do PR; acompanhar no próprio PR.
 
+## Critérios da 0.2.0
+
+- [x] Login e sessão SSR com checagem no servidor; callback de link de e-mail.
+- [x] Criação atômica de workspace com associação do proprietário.
+- [x] Listagem e acesso protegidos por sessão e RLS.
+- [x] Teste de banco com duas identidades e tentativas de acesso indevido.
+- [ ] Aplicar migração e testar envio de e-mail e duas contas num projeto Supabase real.
+
 ## Próxima issue sugerida
 
-**0.2.0 — Identidade e workspaces persistidos.** Definir provedor de autenticação, migrations, roles e checagem em cada operação; testar acesso permitido, negado e troca de workspace; documentar backup e implantação. Não ativar dados reais antes de cumprir esses critérios.
+**1 — Core utilizável.** Arquivos privados, tags, busca autorizada, exportação e base de notificações. Antes, cumprir o último critério da 0.2.0 em um ambiente de teste e registrar um procedimento de backup/restauração.
