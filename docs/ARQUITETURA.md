@@ -1,8 +1,8 @@
 # Arquitetura inicial
 
-## Estado da versão 0.1.0
+## Estado da versão 0.2.0
 
-Monorepo npm com `apps/web` (Next.js App Router, TypeScript, CSS Modules) e `packages/core` (tipos e contratos públicos). `modules/` descreve domínios futuros. A única interação de estado é a prévia visual de dois workspaces; ela não representa autenticação nem isolamento de dados. A escolha de tema é a única preferência gravada no navegador.
+Monorepo npm com `apps/web` (Next.js App Router, TypeScript, CSS Modules) e `packages/core` (tipos e contratos públicos). `modules/` descreve domínios futuros. O login por link usa Supabase Auth e cookies SSR. Workspaces reais estão em `/app`; a seleção na página pública ainda é uma prévia visual. Sem configuração Supabase, a página pública permanece disponível e o login explica como ativar a aplicação.
 
 ## Fronteiras
 
@@ -19,21 +19,21 @@ flowchart TD
 - A camada web monta os módulos, fornece navegação e aplica temas. CSS Modules impede seletores locais de alcançarem telas alheias; `globals.css` contém apenas reset e tokens.
 - Integrações externas usam adaptadores e timeout/erro explícitos. Nenhum serviço externo é pré-requisito para abrir a tela atual.
 
-## Modelo de identidade previsto (a implementar)
+## Modelo de identidade implementado na migração
 
 ```text
-user(id)
-workspace(id, name, kind, created_by)
-membership(user_id, workspace_id, role)
-module_record(id, workspace_id, ...)
+auth.users(id)
+public.workspaces(id, name, kind, created_by, created_at)
+public.workspace_members(user_id, workspace_id, role, joined_at)
+module_record(id, workspace_id, ...) — previsto
 ```
 
-Todo acesso a `module_record` deverá conferir a associação do usuário ao workspace e permissões específicas da ação **no servidor e no banco**. O ID recebido do cliente não é autorização. Relações entre workspaces são operações explícitas, com origem, destino e auditoria. Papel `owner` não elimina checagens de escopo. Nenhuma tabela acima existe na versão 0.1.0.
+`workspaces` e `workspace_members` têm RLS e apenas SELECT para usuários autenticados. A política de membros mostra ao usuário somente sua associação; a política de workspaces só mostra IDs associados. `create_workspace` cria workspace e associação `owner` na mesma transação. INSERT/UPDATE/DELETE diretos não são concedidos. O ID recebido na URL não é autorização: a página verifica claims e o banco filtra a consulta. Registros de módulos futuros deverão incluir `workspace_id` e políticas próprias. Transferência, compartilhamento e edição ainda não existem.
 
 ## Stack e armazenamento previstos
 
-Next.js + TypeScript formam a aplicação; PostgreSQL é o banco proposto, com migrations versionadas e política de acesso por workspace. O provedor de autenticação e a forma de hospedagem serão decididos e documentados antes da primeira conta real. IndexedDB/PWA ficam para uma fase com estratégia de sincronização e conflitos; armazenamento local não deve ser tratado como cópia confiável de dados sensíveis sem essa análise. O tema usa apenas `localStorage`.
+Next.js + TypeScript formam a aplicação; PostgreSQL via Supabase armazena usuários, workspaces e associações. O código usa a chave publicável, sessão por cookie e RLS. Não há chave `service_role`. IndexedDB/PWA ficam para uma fase com estratégia de sincronização e conflitos. O tema usa apenas `localStorage`.
 
 ## Segurança, backup e operação
 
-Na fase com dados reais: sessão validada no servidor, princípio do menor privilégio, RLS ou proteção equivalente no banco, testes de isolamento de workspace, tokens de integração no servidor, URLs temporárias para arquivos privados, log de ações sensíveis, exportação e procedimento testado de restauração. PRs devem avaliar migrações e compatibilidade antes de serem integrados.
+A página `/app` e cada detalhe verificam claims e fazem consultas sob RLS. O Proxy renova a sessão por requisição; rotas autenticadas são dinâmicas, com `Cache-Control: private, no-store`. O teste PostgreSQL simula usuários distintos, tentativas de escrita indevida e acesso anônimo. Antes de usar contas reais, aplicar a migração em ambiente de teste, verificar o fluxo completo de e-mail e documentar/restaurar backup. Arquivos privados, auditoria de operações sensíveis e exportação serão exigidos nas etapas que introduzirem esses dados.

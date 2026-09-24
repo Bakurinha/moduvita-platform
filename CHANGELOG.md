@@ -2,6 +2,20 @@
 
 Todas as alterações relevantes deste projeto são registradas aqui. Durante a fase `0.x`, uma mudança incompatível também pode ocorrer numa versão MINOR, desde que seja explicada e migrável.
 
+## [0.2.0] - 2026-09-24
+
+### Adicionado
+
+- Login por e-mail com link de acesso e confirmação no servidor.
+- Workspaces persistidos com criação atômica, associação do proprietário e acesso por URL.
+- Migração PostgreSQL com RLS, permissões mínimas e teste de isolamento com usuários simulados.
+- Instruções de configuração e verificação com duas contas reais.
+
+### Limitações
+
+- A conexão efetiva requer projeto Supabase, aplicação da migração, configuração dos modelos de e-mail e variáveis de ambiente.
+- Ainda não há convite de membros, edição/exclusão de workspaces nem dados de módulos.
+
 ## [0.1.0] - 2026-09-24
 
 ### Adicionado
