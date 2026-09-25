@@ -2,7 +2,7 @@
 
 Plataforma modular para gestão pessoal, profissional, estudos, escrita e organização diária.
 
-**Versão 0.3.0 — Core por workspace.** A [prévia no GitHub Pages](https://bakurinha.github.io/moduvita-platform/) mostra apenas a interface pública, sem login. Em `/app`, depois de configurar o Supabase num servidor Next.js, é possível entrar por link de e-mail, criar workspaces e usar arquivos privados, tags, busca, exportação e notificações internas. Os módulos de produtividade ainda não existem.
+**Versão 0.4.0 — Notas e Diário.** A [prévia no GitHub Pages](https://bakurinha.github.io/moduvita-platform/) mostra apenas a interface pública, sem login. Em `/app`, depois de configurar o Supabase num servidor Next.js, é possível entrar por link de e-mail, criar workspaces, usar o Core e acessar Notas e Diário. A ativação e os testes com dados reais ainda estão pendentes.
 
 ## Executar
 
@@ -29,6 +29,7 @@ Sem configuração, a página pública abre normalmente e `/login` mostra o que 
 1. Crie um projeto Supabase de teste. Na configuração de autenticação, habilite login por e-mail. Anote **Project URL** e **publishable key** (não use `service_role` ou `secret`).
 2. No SQL Editor do projeto, execute a migração [`supabase/migrations/20260924000100_workspaces.sql`](supabase/migrations/20260924000100_workspaces.sql) uma única vez. Num fluxo com Supabase CLI, aplique migrations versionadas em vez de repetir comandos manuais.
    Depois, execute [`supabase/migrations/20260924000200_core.sql`](supabase/migrations/20260924000200_core.sql) para ativar o Core e o bucket privado.
+   Por fim, execute [`supabase/migrations/20260924000300_productivity.sql`](supabase/migrations/20260924000300_productivity.sql) para Notas e Diário.
 3. Na configuração de URL do Auth, defina **Site URL** como `http://localhost:3000` e permita `http://localhost:3000/auth/callback` como **Redirect URL**. Para outro domínio, use o endereço HTTPS correspondente nos três lugares (Site URL, Redirect URL e variável da aplicação).
 4. Em **Authentication → Email Templates**, ajuste **Magic Link** e **Confirm signup** para que o link aponte diretamente ao endpoint do aplicativo. Substitua a URL padrão do botão por:
 
@@ -44,14 +45,16 @@ Sem configuração, a página pública abre normalmente e `/login` mostra o que 
 
 No Core, envie um arquivo com a conta A e tente baixá-lo com a conta B pela URL direta: o acesso deve falhar. Faça a exportação JSON e o backup/restauração de teste de **banco e bytes do Storage** conforme [docs/CORE.md](docs/CORE.md). A exportação não inclui os bytes.
 
-O teste automatizado de RLS roda em PostgreSQL embutido: `npm run test:db`. Ele verifica duas identidades, acesso anônimo, associação automática do proprietário e bloqueio de alterações diretas. Esse teste não substitui a verificação de e-mail e sessão no Supabase hospedado.
+Em Notas e Diário, crie um registro, edite, procure, mova para a lixeira e restaure. A segunda conta não deve ler nem alterar registros da primeira, mesmo se ambas forem membros do mesmo workspace. O JSON exportado contém **todo o texto** desses módulos, inclusive a lixeira: trate o download como dado privado. Veja [Notas](modules/notes/README.md) e [Diário](modules/journal/README.md).
+
+O teste automatizado de RLS roda em PostgreSQL embutido: `npm run test:db`. Ele verifica identidades diferentes, acesso anônimo, associação ao workspace, privacidade por autor e bloqueio de alterações diretas. Esse teste não substitui a verificação de e-mail, sessão e Storage no Supabase hospedado.
 
 ## Organização
 
 ```text
 apps/web/             Interface Next.js e tema
 packages/core/        Contratos compartilhados; sem lógica de um módulo específico
-modules/              Documentação e, futuramente, implementação isolada dos módulos
+modules/              Contratos e documentação isolados de Notas e Diário
 supabase/migrations/  Estrutura e políticas de banco versionadas
 tests/               Teste de isolamento no banco
 docs/                 Regras, arquitetura, decisões e roadmap
@@ -64,7 +67,7 @@ Leia [as regras do projeto](docs/REGRAS.md) antes de alterar código. Mudanças 
 
 ## Estado e próximo passo
 
-A 0.3.0 implementa o Core em código e migração. A ativação e os testes de ponta a ponta de login, arquivos e backup/restauração dependem de um projeto Supabase configurado. Consulte [arquitetura](docs/ARQUITETURA.md), [operação do Core](docs/CORE.md) e [roadmap](docs/ROADMAP.md).
+A 0.4.0 implementa Notas e Diário em código e migração. A ativação e os testes de ponta a ponta de login, arquivos, módulos e backup/restauração dependem de um projeto Supabase configurado. Consulte [arquitetura](docs/ARQUITETURA.md), [operação do Core](docs/CORE.md) e [roadmap](docs/ROADMAP.md).
 
 ## Licença
 

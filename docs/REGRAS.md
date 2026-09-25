@@ -63,4 +63,4 @@
 
 ## Critério transversal de aceite
 
-Uma entrega que manipule dados reais só pode ser chamada de pronta quando separar dados por workspace, aplicar autorização no servidor, não expor segredos, testar fluxos críticos e documentar migração/recuperação. A interface desta versão 0.1.0 não manipula dados reais.
+Uma entrega que manipule dados reais só pode ser chamada de pronta quando separar dados por workspace, aplicar autorização no servidor, não expor segredos, testar fluxos críticos e documentar migração/recuperação. As capacidades da 0.4.0 estão implementadas em código; a validação em Supabase hospedado ainda é necessária antes de usá-las com dados reais.

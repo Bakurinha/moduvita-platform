@@ -1,15 +1,15 @@
 # Arquitetura inicial
 
-## Estado da versão 0.3.0
+## Estado da versão 0.4.0
 
-Monorepo npm com `apps/web` (Next.js App Router, TypeScript, CSS Modules) e `packages/core` (tipos e contratos públicos). `modules/` descreve domínios futuros. O login por link usa Supabase Auth e cookies SSR. Workspaces e Core estão em `/app`; a seleção na página pública ainda é uma prévia visual. Sem configuração Supabase, a página pública permanece disponível e o login explica como ativar a aplicação.
+Monorepo npm com `apps/web` (Next.js App Router, TypeScript, CSS Modules), `packages/core` (contratos compartilhados) e pacotes próprios `modules/notes` e `modules/journal`. O login por link usa Supabase Auth e cookies SSR. Workspaces, Core e módulos estão em `/app`; a seleção na página pública ainda é uma prévia visual. Sem configuração Supabase, a página pública permanece disponível e o login explica como ativar a aplicação.
 
 ## Fronteiras
 
 ```mermaid
 flowchart TD
   WEB["apps/web · composição e rotas"] --> CORE["packages/core · contratos compartilhados"]
-  WEB --> MOD["modules/* · módulos futuros"]
+  WEB --> MOD["modules/* · contratos dos módulos"]
   MOD --> CORE
   MOD -. "contratos e eventos; sem imports privados" .-> MOD
 ```
@@ -30,11 +30,14 @@ public.core_tags(id, workspace_id, name)
 public.core_file_tags(workspace_id, file_id, tag_id)
 public.core_notifications(id, workspace_id, recipient_id, ...)
 public.core_audit_events(id, workspace_id, actor_id, action, ...)
+public.notes(id, workspace_id, author_id, title, body, deleted_at, ...)
+public.journal_entries(id, workspace_id, author_id, entry_date, title, body, deleted_at, ...)
+public.productivity_audit_events(id, workspace_id, actor_id, module, record_id, action, ...)
 storage.objects(bucket_id='workspace-files', name='<workspace-id>/<file-id>/<name>')
 module_record(id, workspace_id, ...) — previsto
 ```
 
-`workspaces` e `workspace_members` têm RLS e apenas SELECT para usuários autenticados. A política de membros mostra ao usuário somente sua associação; a política de workspaces só mostra IDs associados. `create_workspace` cria workspace e associação `owner` na mesma transação. INSERT/UPDATE/DELETE diretos não são concedidos. O ID recebido na URL não é autorização: a página verifica claims e o banco filtra a consulta. O Core usa RLS nas suas tabelas e no bucket privado, vínculo composto para impedir tags de outro workspace, busca com direitos do invocador e auditoria da exportação. Registros de módulos futuros deverão incluir `workspace_id` e políticas próprias. Transferência, compartilhamento e edição ainda não existem.
+`workspaces` e `workspace_members` têm RLS e apenas SELECT para usuários autenticados. A política de membros mostra ao usuário somente sua associação; a política de workspaces só mostra IDs associados. `create_workspace` cria workspace e associação `owner` na mesma transação. INSERT/UPDATE/DELETE diretos não são concedidos. O ID recebido na URL não é autorização: a página verifica claims e o banco filtra a consulta. O Core usa RLS nas suas tabelas e no bucket privado. Notas e Diário exigem associação ao workspace **e autoria**; o descarte auditado é reversível. Consultas e exportação aplicam o mesmo escopo. Transferência e compartilhamento ainda não existem.
 
 ## Stack e armazenamento previstos
 
@@ -42,4 +45,4 @@ Next.js + TypeScript formam a aplicação; PostgreSQL via Supabase armazena usu�
 
 ## Segurança, backup e operação
 
-A página `/app` e cada detalhe verificam claims e fazem consultas sob RLS. O Proxy renova a sessão por requisição; rotas autenticadas são dinâmicas e downloads/exportação têm `Cache-Control: private, no-store`. Os testes PostgreSQL simulam usuários distintos, tentativas de escrita indevida e acesso anônimo. Antes de usar contas reais, aplicar migrações no ambiente Supabase de teste, verificar e-mail, Storage, duas contas e a restauração de banco e bytes. Veja [ADR-005](decisions/ADR-005-core-files.md) e [operação do Core](CORE.md).
+A página `/app` e cada detalhe verificam claims e fazem consultas sob RLS. O Proxy renova a sessão por requisição; rotas autenticadas são dinâmicas e downloads/exportação têm `Cache-Control: private, no-store`. Os testes PostgreSQL simulam usuários distintos, tentativas de escrita indevida e acesso anônimo, inclusive dois membros do mesmo workspace. Antes de usar contas reais, aplicar migrações no ambiente Supabase de teste, verificar e-mail, Storage, duas contas e restauração de banco e bytes. Veja [ADR-005](decisions/ADR-005-core-files.md), [ADR-006](decisions/ADR-006-productivity-modules.md) e [operação do Core](CORE.md).

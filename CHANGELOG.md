@@ -2,6 +2,24 @@
 
 Todas as alterações relevantes deste projeto são registradas aqui. Durante a fase `0.x`, uma mudança incompatível também pode ocorrer numa versão MINOR, desde que seja explicada e migrável.
 
+## [0.4.0] - 2026-09-24
+
+### Adicionado
+
+- Módulos Notas e Diário: criação, edição, busca, lixeira e restauração por autor e workspace.
+- Migração com RLS, auditoria de descarte/restauração sem conteúdo e teste de acesso entre autores do mesmo workspace.
+- Exportação JSON de registros ativos e na lixeira, com documentação de módulos e decisão arquitetural.
+
+### Migração
+
+- Aplicar `20260924000300_productivity.sql` depois das duas migrações anteriores antes de usar as novas rotas.
+- O campo `format` da exportação muda de `moduvita-core-v1` para `moduvita-workspace-v2` e passa a incluir `notes`, `journal_entries` e `productivity_audit_events`. Consumidores do formato anterior devem reconhecer o novo valor.
+
+### Limitações
+
+- Sem projeto Supabase hospedado, login, fluxo completo e restauração ainda não foram validados. O Pages continua sendo uma prévia estática.
+- Não há compartilhamento de textos, importação, exclusão definitiva, versões anteriores ou sincronização offline.
+
 ## [0.3.0] - 2026-09-24
 
 ### Adicionado

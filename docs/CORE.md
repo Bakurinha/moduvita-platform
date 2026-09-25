@@ -2,7 +2,7 @@
 
 Depois de configurar o Supabase conforme o README, aplique **na ordem** a migração de workspaces e `supabase/migrations/20260924000200_core.sql`. Esta última cria um bucket privado `workspace-files`, tabelas de metadados/tags/notificações e políticas RLS no banco e no Storage. Não coloque arquivos, dumps, chaves ou `.env.local` no GitHub.
 
-Em `/app/<workspaceId>`, membros podem enviar PDFs, TXT, PNG e JPG de até 5 MB, associar tags, buscar pelo nome ou tag, baixar arquivos e exportar um JSON. O JSON contém metadados, tags, notificações e eventos de auditoria do usuário naquele workspace; **não contém os bytes dos arquivos**. Cada arquivo deve ser baixado pelo link autenticado. A exportação registra um evento de auditoria no banco. Não há importação automática. A exportação não inclui dados de outros workspaces.
+Em `/app/<workspaceId>`, membros podem enviar PDFs, TXT, PNG e JPG de até 5 MB, associar tags, buscar pelo nome ou tag, baixar arquivos e exportar um JSON. A partir da 0.4.0, o JSON contém metadados do Core e **o texto integral de Notas e Diário**, inclusive registros na lixeira; **não contém os bytes dos arquivos**. Cada arquivo deve ser baixado pelo link autenticado. A exportação registra um evento de auditoria no banco. Não há importação automática. Trate o JSON como dado privado e não o envie ao GitHub.
 
 Notificações internas são geradas ao adicionar arquivo e podem ser marcadas como lidas pelo destinatário. Não há e-mail ou push. A busca exibe os primeiros 50 resultados; refine o termo para outros. A lista exibe até 100 tags e 10 notificações recentes.
 
