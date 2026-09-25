@@ -2,6 +2,16 @@
 
 Todas as alterações relevantes deste projeto são registradas aqui. Durante a fase `0.x`, uma mudança incompatível também pode ocorrer numa versão MINOR, desde que seja explicada e migrável.
 
+## [0.4.1] - 2026-09-25
+
+### Adicionado
+
+- Configuração de build para o app Next.js no monorepo via Netlify e guia de ativação gratuita com Supabase, URLs de Auth e checklist hospedado.
+
+### Limitações
+
+- Ainda não há projeto Supabase conectado nem deploy autenticado validado; o Pages continua sendo a prévia estática.
+
 ## [0.4.0] - 2026-09-24
 
 ### Adicionado

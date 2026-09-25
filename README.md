@@ -2,7 +2,7 @@
 
 Plataforma modular para gestão pessoal, profissional, estudos, escrita e organização diária.
 
-**Versão 0.4.0 — Notas e Diário.** A [prévia no GitHub Pages](https://bakurinha.github.io/moduvita-platform/) mostra apenas a interface pública, sem login. Em `/app`, depois de configurar o Supabase num servidor Next.js, é possível entrar por link de e-mail, criar workspaces, usar o Core e acessar Notas e Diário. A ativação e os testes com dados reais ainda estão pendentes.
+**Versão 0.4.1 — preparação para deploy gratuito.** A [prévia no GitHub Pages](https://bakurinha.github.io/moduvita-platform/) mostra apenas a interface pública, sem login. Em `/app`, depois de configurar o Supabase num servidor Next.js, é possível entrar por link de e-mail, criar workspaces, usar o Core e acessar Notas e Diário. A ativação e os testes com dados reais ainda estão pendentes.
 
 ## Executar
 
@@ -21,6 +21,8 @@ npm run build
 ```
 
 Para gerar a mesma prévia estática publicada no Pages, rode `npm run build:pages`. O resultado fica em `dist/pages/`. Veja [docs/PAGES.md](docs/PAGES.md) para os limites e a publicação.
+
+Para publicar o aplicativo completo num plano gratuito, siga o [guia Netlify + Supabase](docs/DEPLOY-NETLIFY.md). O deploy funcional ainda depende de criar/conectar as contas e validar o fluxo hospedado; o Pages permanece só como prévia.
 
 Sem configuração, a página pública abre normalmente e `/login` mostra o que falta. Nunca envie credenciais nem `.env.local` ao repositório.
 
@@ -67,7 +69,7 @@ Leia [as regras do projeto](docs/REGRAS.md) antes de alterar código. Mudanças 
 
 ## Estado e próximo passo
 
-A 0.4.0 implementa Notas e Diário em código e migração. A ativação e os testes de ponta a ponta de login, arquivos, módulos e backup/restauração dependem de um projeto Supabase configurado. Consulte [arquitetura](docs/ARQUITETURA.md), [operação do Core](docs/CORE.md) e [roadmap](docs/ROADMAP.md).
+A 0.4.1 inclui a configuração e o guia de deploy gratuito. A ativação e os testes de ponta a ponta de login, arquivos, módulos e backup/restauração dependem de um projeto Supabase configurado e da publicação do app com servidor. Consulte [arquitetura](docs/ARQUITETURA.md), [operação do Core](docs/CORE.md) e [roadmap](docs/ROADMAP.md).
 
 ## Licença
 

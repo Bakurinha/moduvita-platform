@@ -8,6 +8,7 @@ Cada etapa gera uma entrega com critérios de aceite próprios. A numeração de
 | 0.2.0 · identidade e dados | Login por link, workspaces persistidos, membership, migração, RLS e teste de isolamento | Implementado; ativação em projeto Supabase pendente |
 | 1 · Core utilizável | Arquivos privados, tags, busca autorizada, exportação, base de notificações | Implementado em 0.3.0; validação Supabase hospedado pendente |
 | 2 · Produtividade | Notas e Diário utilizáveis em workspace | Implementado em 0.4.0; validação Supabase hospedado pendente |
+| 2.1 · Implantação | Configurar hospedagem gratuita e validar módulos com duas contas | Configuração de build e guia em 0.4.1; ativação externa pendente |
 | 3 · Tempo | Agenda, rotinas e lembretes | Pendente |
 | 4 · Profissional básico | Clientes, ordens de serviço, objetivos | Pendente |
 | 5 · Financeiro | Receitas, despesas, contas e resumo | Pendente |
