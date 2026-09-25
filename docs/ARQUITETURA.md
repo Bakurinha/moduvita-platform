@@ -1,6 +1,6 @@
 # Arquitetura inicial
 
-## Estado da versão 0.4.0
+## Estado da versão 0.4.1
 
 Monorepo npm com `apps/web` (Next.js App Router, TypeScript, CSS Modules), `packages/core` (contratos compartilhados) e pacotes próprios `modules/notes` e `modules/journal`. O login por link usa Supabase Auth e cookies SSR. Workspaces, Core e módulos estão em `/app`; a seleção na página pública ainda é uma prévia visual. Sem configuração Supabase, a página pública permanece disponível e o login explica como ativar a aplicação.
 

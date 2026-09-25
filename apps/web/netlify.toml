@@ -1,0 +1,7 @@
+[build]
+  # O npm workspace instala dependências na raiz; o Next.js gera a saída no app.
+  command = "npm run build"
+  publish = "apps/web/.next"
+
+[build.environment]
+  NODE_VERSION = "22"
