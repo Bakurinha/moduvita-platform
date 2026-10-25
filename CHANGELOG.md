@@ -1,5 +1,13 @@
 # Histórico de versões
 
+## Segurança — 2026-10-25 (configuração)
+
+- Dependências transitivas source-map-js e zod corrigidas pelo npm audit fix sem --force.
+- Next.js e eslint-config-next atualizados de 16.3.6 para 16.4.1, com lockfile regenerado, conforme boletim oficial de 14/10/2026.
+- Actions fixadas por SHA verificado; permissões de leitura explícitas e credenciais de checkout removidas dos fluxos sem escrita.
+- Dependabot configurado para propor atualizações de Actions e dos pacotes npm aplicáveis, sem merge automático.
+
+
 Todas as alterações relevantes deste projeto são registradas aqui. Durante a fase `0.x`, uma mudança incompatível também pode ocorrer numa versão MINOR, desde que seja explicada e migrável.
 
 ## [0.4.1] - 2026-09-25
