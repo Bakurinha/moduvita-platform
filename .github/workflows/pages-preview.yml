@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: pages-preview
+  group: pages-preview-${{ github.ref }}
   cancel-in-progress: false
 
 permissions:
@@ -16,6 +16,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: read
     steps:
@@ -33,9 +34,10 @@ jobs:
           path: dist/pages
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     permissions:
       contents: read
       pages: write
